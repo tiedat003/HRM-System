@@ -1,6 +1,5 @@
 import { ILoginParams, ILoginValidation, IRegisterParams, IRegisterValidation } from '../../models/auth';
 import { validEmailRegex } from '../../utils';
-import { LoginParams, LoginValidation } from './components/LoginForm';
 
 const validateEmail = (email: string) => {
     if (!email) {

@@ -1,16 +1,15 @@
 import { useState, useEffect, useCallback, useRef, ChangeEvent } from "react";
 import React from "react";
-import LoginPage from "../pages/LoginPage";
-import RegisterForm from "./RegisterForm";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import "../../css/form.css"
 import type { FormProps } from 'antd';
 import { Button, Checkbox, Form, Input, Select } from 'antd';
 import { ROUTES } from "../../../configs/routes";
 
 type FieldType = {
-    username?: string;
     password?: string;
+    repassword?: string;
 };
 
 const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
@@ -21,7 +20,7 @@ const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
     console.log('Failed:', errorInfo);
 };
 
-const LoginForm = () => {
+const ChangePassForm = () => {
 
     return (
 
@@ -42,36 +41,27 @@ const LoginForm = () => {
                             autoComplete="off"
                         >
                             <Form.Item<FieldType>
-                                label="Username"
-                                name="username"
-                                rules={[{ required: true, message: 'Please input your username!' }]}
+                                label="New Password"
+                                name="password"
+                                rules={[{ required: true, message: 'Please input new password!' }]}
                             >
                                 <Input />
                             </Form.Item>
 
                             <Form.Item<FieldType>
-                                label="Password"
-                                name="password"
-                                rules={[{ required: true, message: 'Please input your password!' }]}
+                                label="Confirm Password"
+                                name="repassword"
+                                rules={[{ required: true, message: 'Please input repeat password!' }]}
                             >
-                                <Input.Password />
-                            </Form.Item>
-
-                            <Form.Item label="Factory">
-                                <Select defaultValue="Select Factory">
-                                    <Select.Option value="SBM">SBM</Select.Option>
-                                    <Select.Option value="DMF">DMF</Select.Option>
-                                </Select>
+                                <Input />
                             </Form.Item>
 
                             <Form.Item label={null}>
-                                <Button type="primary" href={ROUTES.general} htmlType="submit" block>
-                                    Sign In
+                                <Button type="primary" htmlType="submit" block>
+                                    Confirm
                                 </Button>
                             </Form.Item>
-                            <Button type="link" block href={ROUTES.forgot} style={{ textDecoration: "none" }}>
-                                Forgot Your Password?
-                            </Button>
+
                         </Form>
 
                     </div>
@@ -84,4 +74,4 @@ const LoginForm = () => {
     );
 }
 
-export default LoginForm;
+export default ChangePassForm;

@@ -6,7 +6,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "./Form.css"
 import { FormattedMessage } from "react-intl";
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import { error, log } from "console";
 import InputComponent from "../../common/components/InputComponent";
 
 const RegisterForm = () => {
