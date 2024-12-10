@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Button, DatePicker, Divider, Flex, Layout, Menu, MenuProps, Select, Table, TableColumnsType, TableProps } from 'antd';
+import { Alert, Button, DatePicker, Divider, Flex, Layout, Menu, MenuProps, Select, Table, TableColumnsType, TableProps } from 'antd';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import { SearchOutlined } from '@ant-design/icons';
 import { Breadcrumb } from 'antd';
+import "../../css/attendance.css"
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -168,16 +169,11 @@ const Attendance = () => {
             <Layout style={layoutStyle}>
                 <Header style={headerStyle}>
                     <img src="https://web-qa.hrm.div4.pgtest.co/static/media/HR_Logo.7c93eebe8886301b470d6d7131b23a95.svg" alt="" />
-                    <h3 style={{
-                        fontWeight: 500,
-                        fontSize: "24px",
-                        lineHeight: "32.78px"
-                    }}>
+                    <h3>
                         HR Management System
                     </h3>
                     <Select
                         defaultValue="EN"
-                        style={{ width: 120 }}
                         options={[
                             { value: 'Eng', label: 'EN' },
                             { value: 'Vie', label: 'VI' },
@@ -191,11 +187,6 @@ const Attendance = () => {
                 <Layout>
                     <Sider width="25%" style={siderStyle}>
                         <Menu
-                            style={{
-                                backgroundColor: "#FBFCFD",
-                                padding: "30px 24px",
-                                gap: "10px"
-                            }}
                             defaultSelectedKeys={['1']}
                             defaultOpenKeys={['sub1']}
                             mode="inline"
@@ -203,6 +194,12 @@ const Attendance = () => {
                         />
                     </Sider>
                     <Content style={contentStyle}>
+                        {/* <Alert
+                            message="Records locked"
+                            type="success"
+                            showIcon
+                            closable
+                        /> */}
                         <Breadcrumb
                             style={{ gap: "6px", fontWeight: "400", fontSize: "14px", lineHeight: "19.07px", color: "#687076" }}
                             items={[
@@ -218,10 +215,7 @@ const Attendance = () => {
                             ]}
                         />
                         <header style={{
-                            color: "#000",
-                            fontSize: "36px",
-                            fontWeight: 500,
-                            lineHeight: "43.09px",
+
                         }}>
                             Attendance Management
                         </header>
@@ -247,8 +241,6 @@ const Attendance = () => {
                             padding: "10px",
                             gap: "10px",
                             border: "1px"
-
-
                         }}>
                             Search</Button>
                         <Flex gap="middle" vertical>
