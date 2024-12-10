@@ -21,6 +21,9 @@ const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
     console.log('Failed:', errorInfo);
 };
 
+const handleClick = () => {
+}
+
 const LoginForm = () => {
 
     return (
@@ -65,7 +68,7 @@ const LoginForm = () => {
                             </Form.Item>
 
                             <Form.Item label={null}>
-                                <Button type="primary" href={ROUTES.general} htmlType="submit" block>
+                                <Button type="primary" href={ROUTES.general} htmlType="submit" block onClick={handleClick}>
                                     Sign In
                                 </Button>
                             </Form.Item>
