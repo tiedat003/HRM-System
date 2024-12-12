@@ -44,6 +44,8 @@ const layoutStyle = {
     width: '100%',
     maxWidth: '100%',
 };
+
+// Sider
 type MenuItem = Required<MenuProps>['items'][number];
 
 const items: MenuItem[] = [
@@ -72,50 +74,10 @@ const items: MenuItem[] = [
         ]
     }
 ]
-type TableRowSelection<T extends object = object> = TableProps<T>['rowSelection'];
-
-interface DataType {
-    key: React.Key;
-    name: string;
-    age: number;
-    address: string;
-}
-
-const columns: TableColumnsType<DataType> = [
-    {
-        title: 'Name',
-        dataIndex: 'name',
-    },
-    {
-        title: 'Age',
-        dataIndex: 'age',
-    },
-    {
-        title: 'Address',
-        dataIndex: 'address',
-    },
-];
-
-const dataSource = Array.from({ length: 46 }).map<DataType>((_, i) => ({
-    key: i,
-    name: `Edward King ${i}`,
-    age: 32,
-    address: `London, Park Lane no. ${i}`,
-}));
-
 
 const Attendance = () => {
     const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
     const [loading, setLoading] = useState(false);
-
-    const start = () => {
-        setLoading(true);
-        // ajax request after empty completing
-        setTimeout(() => {
-            setSelectedRowKeys([]);
-            setLoading(false);
-        }, 1000);
-    };
 
     const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
         console.log('selectedRowKeys changed: ', newSelectedRowKeys);
@@ -128,7 +90,6 @@ const Attendance = () => {
     };
 
     type TableRowSelection<T extends object = object> = TableProps<T>['rowSelection'];
-
     interface DataType {
         key: React.Key;
         name: string;
@@ -260,16 +221,16 @@ const Attendance = () => {
                                     </svg>
                                     Add
                                 </Button>
-                                <Button color="danger" variant="filled">
+                                <Button color="danger" variant="filled" disabled>
                                     <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M5.86686 1.56641C5.57231 1.56641 5.33353 1.80519 5.33353 2.09974C5.33353 2.39429 5.57231 2.63307 5.86686 2.63307H10.1335C10.4281 2.63307 10.6669 2.39429 10.6669 2.09974C10.6669 1.80519 10.4281 1.56641 10.1335 1.56641H5.86686ZM3.2002 4.23307C3.2002 3.93852 3.43898 3.69974 3.73353 3.69974H5.33353H10.6669H12.2669C12.5614 3.69974 12.8002 3.93852 12.8002 4.23307C12.8002 4.52762 12.5614 4.76641 12.2669 4.76641H11.7335V13.2997C11.7335 13.8889 11.256 14.3664 10.6669 14.3664H5.33353C4.74443 14.3664 4.26686 13.8889 4.26686 13.2997V4.76641H3.73353C3.43898 4.76641 3.2002 4.52762 3.2002 4.23307ZM5.33353 4.76641H10.6669V13.2997H5.33353V4.76641Z" fill="#E5484D" />
                                     </svg>
                                     Delete
                                 </Button>
-                                {hasSelected ? `Selected ${selectedRowKeys.length} items` : null}
+                                {/* {hasSelected ? `Selected ${selectedRowKeys.length} items` : null} */}
                             </Flex>
                             <Table<DataType> rowSelection={rowSelection} columns={columns} dataSource={dataSource} />
-                            <Button type="primary" danger style={{
+                            <Button type="primary" danger disabled style={{
                                 width: "213px",
                                 height: "48px",
                                 borderRadius: "6px",
