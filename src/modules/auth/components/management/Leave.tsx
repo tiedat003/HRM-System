@@ -205,11 +205,7 @@ const Attendance = () => {
                         }}>
                             Search</Button>
                         <Flex gap="middle" vertical>
-                            <Flex align="center" gap="middle" style={{
-                                // display: 'flex',
-                                // justifyContent: 'space-around',
-                                // alignItems: 'center'
-                            }}>
+                            <Flex align="center" gap="middle">
                                 <RangePicker
                                     defaultValue={[dayjs('01/01/2024', dateFormat), dayjs('01/01/2024', dateFormat)]}
                                     format={dateFormat}
