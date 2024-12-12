@@ -1,5 +1,5 @@
 import React from "react";
-import ForgotForm from '../components/ForgotForm';
+import ForgotForm from '../components/loginform/ForgotForm';
 const ForgotPage = () => {
     return (
         <div>

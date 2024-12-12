@@ -1,5 +1,5 @@
 import React from "react";
-import ChangePassForm from '../components/ChangePassForm';
+import ChangePassForm from '../components/loginform/ChangePassForm';
 const ChangePassPage = () => {
     return (
         <div>

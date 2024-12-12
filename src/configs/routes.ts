@@ -6,5 +6,7 @@ export const ROUTES = {
   forgot: "/forgot-password",
   register: "/register",
   change: "/change-password",
-  general: "/general"
+  attendance: "/attendance-management",
+  leave: "/leave-management",
+
 };

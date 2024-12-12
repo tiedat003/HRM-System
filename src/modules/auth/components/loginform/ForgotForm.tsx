@@ -1,16 +1,14 @@
 import { useState, useEffect, useCallback, useRef, ChangeEvent } from "react";
 import React from "react";
-import LoginPage from "../pages/LoginPage";
-import RegisterForm from "./RegisterForm";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import "../../css/form.css"
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import "../../../css/form.css"
 import type { FormProps } from 'antd';
 import { Button, Checkbox, Form, Input, Select } from 'antd';
-import { ROUTES } from "../../../configs/routes";
+import { ROUTES } from "../../../../configs/routes";
 
 type FieldType = {
-    username?: string;
-    password?: string;
+    email?: string;
 };
 
 const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
@@ -21,10 +19,7 @@ const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
     console.log('Failed:', errorInfo);
 };
 
-const handleClick = () => {
-}
-
-const LoginForm = () => {
+const ForgotForm = () => {
 
     return (
 
@@ -45,35 +40,20 @@ const LoginForm = () => {
                             autoComplete="off"
                         >
                             <Form.Item<FieldType>
-                                label="Username"
-                                name="username"
-                                rules={[{ required: true, message: 'Please input your username!' }]}
+                                label="Your work email"
+                                name="email"
+                                rules={[{ required: true, message: 'Please input your email!' }]}
                             >
                                 <Input />
                             </Form.Item>
 
-                            <Form.Item<FieldType>
-                                label="Password"
-                                name="password"
-                                rules={[{ required: true, message: 'Please input your password!' }]}
-                            >
-                                <Input.Password />
-                            </Form.Item>
-
-                            <Form.Item label="Factory">
-                                <Select defaultValue="Select Factory">
-                                    <Select.Option value="SBM">SBM</Select.Option>
-                                    <Select.Option value="DMF">DMF</Select.Option>
-                                </Select>
-                            </Form.Item>
-
                             <Form.Item label={null}>
-                                <Button type="primary" href={ROUTES.general} htmlType="submit" block onClick={handleClick}>
-                                    Sign In
+                                <Button type="primary" htmlType="submit" block href={ROUTES.change} style={{ textDecoration: "none" }}>
+                                    Confirm & Send OTP
                                 </Button>
                             </Form.Item>
-                            <Button type="link" block href={ROUTES.forgot} style={{ textDecoration: "none" }}>
-                                Forgot Your Password?
+                            <Button type="link" block href={ROUTES.login} style={{ textDecoration: "none" }}>
+                                Back to Sign In
                             </Button>
                         </Form>
 
@@ -87,4 +67,4 @@ const LoginForm = () => {
     );
 }
 
-export default LoginForm;
+export default ForgotForm;

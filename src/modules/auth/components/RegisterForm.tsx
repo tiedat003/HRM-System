@@ -1,7 +1,7 @@
 import { useState, useEffect, ChangeEvent } from "react";
 import React from "react";
 import RegisterPage from "../pages/RegisterPage";
-import LoginForm from "./LoginForm";
+import LoginForm from "../components/loginform/LoginForm";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./Form.css"
 import { FormattedMessage } from "react-intl";

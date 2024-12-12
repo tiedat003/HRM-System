@@ -2,13 +2,13 @@ import { useState, useEffect, useCallback, useRef, ChangeEvent } from "react";
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import "../../css/form.css"
+import "../../../css/form.css"
 import type { FormProps } from 'antd';
 import { Button, Checkbox, Form, Input, Select } from 'antd';
-import { ROUTES } from "../../../configs/routes";
 
 type FieldType = {
-    email?: string;
+    password?: string;
+    repassword?: string;
 };
 
 const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
@@ -19,7 +19,7 @@ const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
     console.log('Failed:', errorInfo);
 };
 
-const ForgotForm = () => {
+const ChangePassForm = () => {
 
     return (
 
@@ -40,21 +40,27 @@ const ForgotForm = () => {
                             autoComplete="off"
                         >
                             <Form.Item<FieldType>
-                                label="Your work email"
-                                name="email"
-                                rules={[{ required: true, message: 'Please input your email!' }]}
+                                label="New Password"
+                                name="password"
+                                rules={[{ required: true, message: 'Please input new password!' }]}
+                            >
+                                <Input />
+                            </Form.Item>
+
+                            <Form.Item<FieldType>
+                                label="Confirm Password"
+                                name="repassword"
+                                rules={[{ required: true, message: 'Please input repeat password!' }]}
                             >
                                 <Input />
                             </Form.Item>
 
                             <Form.Item label={null}>
-                                <Button type="primary" htmlType="submit" block href={ROUTES.change} style={{ textDecoration: "none" }}>
-                                    Confirm & Send OTP
+                                <Button type="primary" htmlType="submit" block>
+                                    Confirm
                                 </Button>
                             </Form.Item>
-                            <Button type="link" block href={ROUTES.login} style={{ textDecoration: "none" }}>
-                                Back to Sign In
-                            </Button>
+
                         </Form>
 
                     </div>
@@ -67,4 +73,4 @@ const ForgotForm = () => {
     );
 }
 
-export default ForgotForm;
+export default ChangePassForm;

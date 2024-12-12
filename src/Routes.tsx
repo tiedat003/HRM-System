@@ -12,7 +12,8 @@ const HomePage = lazy(() => import("./modules/home/pages/HomePage"))
 const ContactPage = lazy(() => import("./modules/home/pages/ContactPage"))
 const ForgotPage = lazy(() => import("./modules/auth/pages/ForgotPage"))
 const ChangePassPage = lazy(() => import("./modules/auth/pages/ChangePassPage"))
-const ManagementPage = lazy(() => import("./modules/auth/pages/ManagementPage"))
+const Attendance = lazy(() => import("./modules/auth/components/management/Attendance"))
+const Leave = lazy(() => import("./modules/auth/components/management/Leave"))
 
 const LoadingPage = () => (<Grid container
     direction="row"
@@ -33,7 +34,8 @@ export const Routes = (props: Props) => {
                 <Route path={ROUTES.contact} component={ContactPage} />
                 <Route path={ROUTES.forgot} component={ForgotPage} />
                 <Route path={ROUTES.change} component={ChangePassPage} />
-                <Route path={ROUTES.general} component={ManagementPage} />
+                <Route path={ROUTES.attendance} component={Attendance} />
+                <Route path={ROUTES.leave} component={Leave} />
                 <Route path="/" component={AuthPage} />
             </Switch>
         </Suspense>
