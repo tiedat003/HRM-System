@@ -20,3 +20,14 @@ h2 {
     font-weight: 500;
     line-height: 43.09px;
 }
+
+.link-button {
+    text-decoration: none;
+    color: #000;
+    background-color: #F1F3F5;
+    width: 281px;
+    height: 52px;
+    border-radius: 8px;
+    padding: 8px 10px;
+    gap: 10px;
+}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { LaptopOutlined, NotificationOutlined, SearchOutlined, UserOutlined } from '@ant-design/icons';
 import type { MenuProps, TableColumnsType, TableProps } from 'antd';
-import { Breadcrumb, Button, DatePicker, Layout, Menu, Select, Table, theme } from 'antd';
+import { Breadcrumb, Button, DatePicker, Divider, Layout, Menu, Select, Table, theme } from 'antd';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import "../../../css/attendance.css"
@@ -17,7 +17,7 @@ const headerStyle: React.CSSProperties = {
     height: 64,
     paddingInline: 48,
     lineHeight: '64px',
-    backgroundColor: '#ffffff',
+    backgroundColor: '#FFFFFF',
 };
 
 const contentStyle: React.CSSProperties = {
@@ -159,34 +159,49 @@ const Attendance: React.FC = () => {
                 </Sider>
                 <Layout style={{ padding: '0 24px 24px' }}>
                     <Breadcrumb
-                        items={[{ title: 'General' }, { title: 'Attendance Management' }, { title: 'Attendance Management' }]}
-                        style={{ margin: '16px 0' }}
+                        separator=">"
+                        style={{ gap: "6px", fontWeight: "400", fontSize: "14px", lineHeight: "19.07px", color: "#687076" }}
+                        items={[
+                            {
+                                title: 'General',
+                                href: '',
+                            },
+                            {
+                                title: 'Attendance Management',
+                                href: '',
+                            },
+                            {
+                                title: 'Attendance Record',
+                            },
+                        ]}
                     />
                     <h2>Attendance Management</h2>
-                    <Button type="primary"
-                        style={{
-                            width: "178px",
+                    <div style={{ display: "flex", justifyContent: "space-between" }}>
+                        <Button type="primary"
+                            style={{
+                                width: "178px",
+                                height: "42px",
+                                borderRadius: "6px",
+                                padding: "8px 20px",
+                                gap: "6px"
+                            }}>Attendance Record</Button>
+                        <Button color="primary" variant="filled" style={{
+                            width: "169px",
                             height: "42px",
                             borderRadius: "6px",
                             padding: "8px 20px",
                             gap: "6px"
-                        }}>Attendance Record</Button>
-                    <Button color="primary" variant="filled" style={{
-                        width: "169px",
-                        height: "42px",
-                        borderRadius: "6px",
-                        padding: "8px 20px",
-                        gap: "6px"
-                    }}>Overtime Request</Button>
-                    <Button icon={<SearchOutlined />} style={{
-                        width: "200px",
-                        height: "40px",
-                        borderRadius: "8px",
-                        padding: "10px",
-                        gap: "10px",
-                        border: "1px"
-                    }}>
-                        Search</Button>
+                        }}>Overtime Request</Button>
+                        <Button icon={<SearchOutlined />} style={{
+                            width: "200px",
+                            height: "40px",
+                            borderRadius: "8px",
+                            padding: "10px",
+                            gap: "10px",
+                            border: "1px"
+                        }}>
+                            Search</Button>
+                    </div>
                     <Content
                         style={{
                             padding: 24,
@@ -214,7 +229,9 @@ const Attendance: React.FC = () => {
                             Delete
                         </Button>
                         {/* {hasSelected ? `Selected ${selectedRowKeys.length} items` : null} */}
+                        <Divider />
                         <Table<DataType> rowSelection={rowSelection} columns={columns} dataSource={dataSource} />
+                        <Divider />
                     </Content>
                     <Footer style={{ textAlign: 'center' }}>
                         CopyRight ©{new Date().getFullYear()}. All Rights Reserved
