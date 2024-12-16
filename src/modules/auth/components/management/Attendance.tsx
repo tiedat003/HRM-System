@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { LaptopOutlined, NotificationOutlined, SearchOutlined, UserOutlined } from '@ant-design/icons';
+import { SearchOutlined } from '@ant-design/icons';
 import type { MenuProps, TableColumnsType, TableProps } from 'antd';
-import { Breadcrumb, Button, DatePicker, Divider, Layout, Menu, Select, Table, theme } from 'antd';
+import { Breadcrumb, Button, Col, DatePicker, Divider, Layout, Menu, Row, Select, Table, theme } from 'antd';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import "../../../css/attendance.css"
-
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -28,7 +27,6 @@ const contentStyle: React.CSSProperties = {
 };
 
 const siderStyle: React.CSSProperties = {
-    textAlign: 'center',
     lineHeight: '120px',
     color: '#fff',
     backgroundColor: "#FBFCFD"
@@ -39,11 +37,12 @@ const footerStyle: React.CSSProperties = {
     color: '#687076',
 };
 
-const layoutStyle = {
+const layoutStyle: React.CSSProperties = {
     borderRadius: 8,
     overflow: 'hidden',
     width: '100%',
     maxWidth: '100%',
+    padding: '0 24px 24px'
 };
 
 type MenuItem = Required<MenuProps>['items'][number];
@@ -79,9 +78,11 @@ const Attendance: React.FC = () => {
 
     const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
     const [loading, setLoading] = useState(false);
+    const [bordered, setBordered] = useState(true);
 
     const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
         console.log('selectedRowKeys changed: ', newSelectedRowKeys);
+
         setSelectedRowKeys(newSelectedRowKeys);
     };
 
@@ -103,15 +104,30 @@ const Attendance: React.FC = () => {
         { title: 'NIK', dataIndex: 'age' },
         { title: 'Name', dataIndex: 'address' },
         { title: 'Department', dataIndex: 'address' },
-        { title: 'Start', dataIndex: 'address' },
-        { title: 'Lunch', dataIndex: 'address' },
-        { title: 'End of Lunch', dataIndex: 'address' },
-        { title: 'End', dataIndex: 'address' },
-        { title: 'OT Start', dataIndex: 'address' },
-        { title: 'OT End', dataIndex: 'address' },
+        {
+            title: 'ATTENDANCE', children: [
+                { title: 'Start', dataIndex: 'address' },
+                { title: 'Lunch', dataIndex: 'address' },
+                { title: 'End of Lunch', dataIndex: 'address' },
+                { title: 'End', dataIndex: 'address' }
+            ]
+        },
+        {
+            title: "OT", children: [
+                { title: 'OT Start', dataIndex: 'address' },
+                { title: 'OT End', dataIndex: 'address' },
+            ]
+        },
+        {
+            title: "CODE", children: [
+                { title: 'Attendance Code', dataIndex: 'address' },
+                { title: 'Attendance Value', dataIndex: 'address' },
+            ]
+        },
+        { title: 'Late', dataIndex: 'address' },
     ];
 
-    const dataSource = Array.from<DataType>({ length: 46 }).map<DataType>((_, i) => ({
+    const dataSource = Array.from<DataType>({ length: 100 }).map<DataType>((_, i) => ({
         key: i,
         name: `Edward King ${i}`,
         age: `${i}`,
@@ -129,6 +145,10 @@ const Attendance: React.FC = () => {
     const {
         token: { colorBgContainer, borderRadiusLG },
     } = theme.useToken();
+
+    const handleBorderChange = (enable: boolean) => {
+        setBordered(enable);
+    };
     return (
         <Layout>
             <Header style={headerStyle}>
@@ -149,7 +169,8 @@ const Attendance: React.FC = () => {
                 </svg>
             </Header>
             <Layout>
-                <Sider width={200} style={siderStyle}>
+
+                <Sider width={250} style={siderStyle}>
                     <Menu
                         defaultSelectedKeys={['1']}
                         defaultOpenKeys={['sub1']}
@@ -157,7 +178,7 @@ const Attendance: React.FC = () => {
                         items={items}
                     />
                 </Sider>
-                <Layout style={{ padding: '0 24px 24px' }}>
+                <Layout style={layoutStyle}>
                     <Breadcrumb
                         separator=">"
                         style={{ gap: "6px", fontWeight: "400", fontSize: "14px", lineHeight: "19.07px", color: "#687076" }}
@@ -176,7 +197,7 @@ const Attendance: React.FC = () => {
                         ]}
                     />
                     <h2>Attendance Management</h2>
-                    <div style={{ display: "flex", justifyContent: "space-between" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", paddingBottom: "10px", gap: "10px" }}>
                         <Button type="primary"
                             style={{
                                 width: "178px",
@@ -211,26 +232,35 @@ const Attendance: React.FC = () => {
                             borderRadius: borderRadiusLG,
                         }}
                     >
-                        <RangePicker
-                            defaultValue={[dayjs('01/01/2024', dateFormat), dayjs('01/01/2024', dateFormat)]}
-                            format={dateFormat}
-                        />
-                        <Button color="primary" variant="filled">
-                            <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M13.3333 6.5H7.33333C6.59695 6.5 6 7.09695 6 7.83333V13.8333C6 14.5697 6.59695 15.1667 7.33333 15.1667H13.3333C14.0697 15.1667 14.6667 14.5697 14.6667 13.8333V7.83333C14.6667 7.09695 14.0697 6.5 13.3333 6.5Z" stroke="#0091FF" stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M3.3335 10.4997H2.66683C2.31321 10.4997 1.97407 10.3592 1.72402 10.1092C1.47397 9.8591 1.3335 9.51996 1.3335 9.16634V3.16634C1.3335 2.81272 1.47397 2.47358 1.72402 2.22353C1.97407 1.97348 2.31321 1.83301 2.66683 1.83301H8.66683C9.02045 1.83301 9.35959 1.97348 9.60964 2.22353C9.85969 2.47358 10.0002 2.81272 10.0002 3.16634V3.83301" stroke="#0091FF" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                            Add
-                        </Button>
-                        <Button color="danger" variant="filled" disabled>
-                            <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M5.86686 1.56641C5.57231 1.56641 5.33353 1.80519 5.33353 2.09974C5.33353 2.39429 5.57231 2.63307 5.86686 2.63307H10.1335C10.4281 2.63307 10.6669 2.39429 10.6669 2.09974C10.6669 1.80519 10.4281 1.56641 10.1335 1.56641H5.86686ZM3.2002 4.23307C3.2002 3.93852 3.43898 3.69974 3.73353 3.69974H5.33353H10.6669H12.2669C12.5614 3.69974 12.8002 3.93852 12.8002 4.23307C12.8002 4.52762 12.5614 4.76641 12.2669 4.76641H11.7335V13.2997C11.7335 13.8889 11.256 14.3664 10.6669 14.3664H5.33353C4.74443 14.3664 4.26686 13.8889 4.26686 13.2997V4.76641H3.73353C3.43898 4.76641 3.2002 4.52762 3.2002 4.23307ZM5.33353 4.76641H10.6669V13.2997H5.33353V4.76641Z" fill="#C1C8CD" />
-                            </svg>
-                            Delete
-                        </Button>
+                        <div style={{ display: "flex", justifyContent: "space-between" }}>
+                            <RangePicker
+                                defaultValue={[dayjs('01/01/2024', dateFormat), dayjs('01/01/2024', dateFormat)]}
+                                format={dateFormat}
+                            />
+                            <Button color="primary" variant="filled">
+                                <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M13.3333 6.5H7.33333C6.59695 6.5 6 7.09695 6 7.83333V13.8333C6 14.5697 6.59695 15.1667 7.33333 15.1667H13.3333C14.0697 15.1667 14.6667 14.5697 14.6667 13.8333V7.83333C14.6667 7.09695 14.0697 6.5 13.3333 6.5Z" stroke="#0091FF" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M3.3335 10.4997H2.66683C2.31321 10.4997 1.97407 10.3592 1.72402 10.1092C1.47397 9.8591 1.3335 9.51996 1.3335 9.16634V3.16634C1.3335 2.81272 1.47397 2.47358 1.72402 2.22353C1.97407 1.97348 2.31321 1.83301 2.66683 1.83301H8.66683C9.02045 1.83301 9.35959 1.97348 9.60964 2.22353C9.85969 2.47358 10.0002 2.81272 10.0002 3.16634V3.83301" stroke="#0091FF" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                Add
+                            </Button>
+                            <Button color="danger" variant="filled" >
+                                <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M5.86686 1.56641C5.57231 1.56641 5.33353 1.80519 5.33353 2.09974C5.33353 2.39429 5.57231 2.63307 5.86686 2.63307H10.1335C10.4281 2.63307 10.6669 2.39429 10.6669 2.09974C10.6669 1.80519 10.4281 1.56641 10.1335 1.56641H5.86686ZM3.2002 4.23307C3.2002 3.93852 3.43898 3.69974 3.73353 3.69974H5.33353H10.6669H12.2669C12.5614 3.69974 12.8002 3.93852 12.8002 4.23307C12.8002 4.52762 12.5614 4.76641 12.2669 4.76641H11.7335V13.2997C11.7335 13.8889 11.256 14.3664 10.6669 14.3664H5.33353C4.74443 14.3664 4.26686 13.8889 4.26686 13.2997V4.76641H3.73353C3.43898 4.76641 3.2002 4.52762 3.2002 4.23307ZM5.33353 4.76641H10.6669V13.2997H5.33353V4.76641Z"
+                                        fill="#E5484D" />
+                                </svg>
+                                Delete
+                            </Button>
+                        </div>
                         {/* {hasSelected ? `Selected ${selectedRowKeys.length} items` : null} */}
                         <Divider />
-                        <Table<DataType> rowSelection={rowSelection} columns={columns} dataSource={dataSource} />
+                        <Table<DataType>
+                            bordered={bordered}
+                            rowSelection={rowSelection}
+                            columns={columns}
+                            dataSource={dataSource}
+                            scroll={{ x: 'max-content' }}
+                        />
                         <Divider />
                     </Content>
                     <Footer style={{ textAlign: 'center' }}>
