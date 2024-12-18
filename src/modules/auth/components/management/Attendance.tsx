@@ -169,7 +169,6 @@ const Attendance: React.FC = () => {
                 </svg>
             </Header>
             <Layout>
-
                 <Sider width={250} style={siderStyle}>
                     <Menu
                         defaultSelectedKeys={['1']}
