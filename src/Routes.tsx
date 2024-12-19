@@ -14,6 +14,7 @@ const ForgotPage = lazy(() => import("./modules/auth/pages/ForgotPage"))
 const ChangePassPage = lazy(() => import("./modules/auth/pages/ChangePassPage"))
 const Attendance = lazy(() => import("./modules/auth/components/management/Attendance"))
 const Leave = lazy(() => import("./modules/auth/components/management/Leave"))
+const Payroll = lazy(() => import("./modules/auth/components/management/Payroll"))
 
 const LoadingPage = () => (<Grid container
     direction="row"
@@ -36,6 +37,7 @@ export const Routes = (props: Props) => {
                 <Route path={ROUTES.change} component={ChangePassPage} />
                 <Route path={ROUTES.attendance} component={Attendance} />
                 <Route path={ROUTES.leave} component={Leave} />
+                <Route path={ROUTES.payroll} component={Payroll} />
                 <Route path="/" component={AuthPage} />
             </Switch>
         </Suspense>

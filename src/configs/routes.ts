@@ -8,5 +8,6 @@ export const ROUTES = {
   change: "/change-password",
   attendance: "/attendance-management",
   leave: "/leave-management",
+  payroll: "/payroll-management",
 
 };
