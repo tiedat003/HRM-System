@@ -80,7 +80,7 @@ const LoginForm = () => {
                 </div>
             </main >
             <footer>
-                <span>Copyright © 2022. All Rights Reserved</span>
+                <span>Copyright © {new Date().getFullYear()}. All Rights Reserved</span>
             </footer>
         </div >
     );

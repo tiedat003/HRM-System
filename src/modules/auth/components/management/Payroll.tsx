@@ -120,10 +120,7 @@ const Payroll: React.FC = () => {
         address: `London${i}`,
     }));
 
-    const hasSelected = selectedRowKeys.length > 0;
-
     dayjs.extend(customParseFormat);
-
 
     const monthFormat = 'MMMM YYYY';
 
