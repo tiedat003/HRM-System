@@ -29,7 +29,7 @@ const contentStyle: React.CSSProperties = {
 const siderStyle: React.CSSProperties = {
     lineHeight: '120px',
     color: '#fff',
-    backgroundColor: "#FBFCFD"
+    backgroundColor: "#FBFCFD",
 };
 
 const footerStyle: React.CSSProperties = {

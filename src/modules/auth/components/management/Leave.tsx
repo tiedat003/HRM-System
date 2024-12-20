@@ -11,7 +11,7 @@ const { Header, Footer, Sider, Content } = Layout;
 
 const headerStyle: React.CSSProperties = {
     display: "flex",
-    justifyContent: 'space-between',
+    justifyContent: "space-between",
     alignItems: 'center',
     color: "#11181C",
     height: 64,
@@ -30,7 +30,7 @@ const contentStyle: React.CSSProperties = {
 const siderStyle: React.CSSProperties = {
     lineHeight: '120px',
     color: '#fff',
-    backgroundColor: "#FBFCFD"
+    backgroundColor: "#FBFCFD",
 };
 
 const footerStyle: React.CSSProperties = {
@@ -216,32 +216,6 @@ const Leave: React.FC = () => {
                         ]}
                     />
                     <h2>Leave Management</h2>
-                    <div style={{ display: "flex", justifyContent: "space-between", paddingBottom: "10px", gap: "10px" }}>
-                        <Button type="primary"
-                            style={{
-                                width: "178px",
-                                height: "42px",
-                                borderRadius: "6px",
-                                padding: "8px 20px",
-                                gap: "6px"
-                            }}>Leave Record</Button>
-                        <Button color="primary" variant="filled" style={{
-                            width: "169px",
-                            height: "42px",
-                            borderRadius: "6px",
-                            padding: "8px 20px",
-                            gap: "6px"
-                        }}>Leave Request</Button>
-                        <Button icon={<SearchOutlined />} style={{
-                            width: "200px",
-                            height: "40px",
-                            borderRadius: "8px",
-                            padding: "10px",
-                            gap: "10px",
-                            border: "1px"
-                        }}>
-                            Search</Button>
-                    </div>
                     <Content
                         style={{
                             padding: 24,
@@ -251,8 +225,35 @@ const Leave: React.FC = () => {
                             borderRadius: borderRadiusLG,
                         }}
                     >
+                        <div style={{ display: "flex", justifyContent: "space-between", paddingBottom: "10px", gap: "10px" }}>
+                            <Button type="primary"
+                                style={{
+                                    width: "178px",
+                                    height: "42px",
+                                    borderRadius: "6px",
+                                    padding: "8px 20px",
+                                    gap: "6px"
+                                }}>Leave Record</Button>
+                            <Button color="primary" variant="filled" style={{
+                                width: "169px",
+                                height: "42px",
+                                borderRadius: "6px",
+                                padding: "8px 20px",
+                                gap: "6px"
+                            }}>Leave Request</Button>
+                            <Button icon={<SearchOutlined />} style={{
+                                width: "200px",
+                                height: "40px",
+                                borderRadius: "8px",
+                                padding: "10px",
+                                gap: "10px",
+                                marginLeft: "548px"
+                            }}>
+                                Search</Button>
+                        </div>
                         <div style={{ display: "flex", justifyContent: "space-between" }}>
                             <RangePicker
+                                style={{ marginRight: "500px" }}
                                 defaultValue={[dayjs('01/01/2024', dateFormat), dayjs('01/01/2024', dateFormat)]}
                                 format={dateFormat}
                             />
