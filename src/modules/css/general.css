@@ -1,0 +1,32 @@
+.button-link {
+    text-decoration: none;
+    color: #000;
+    background-color: #FBFCFD;
+    width: 235px;
+    height: 52px;
+    border-radius: 8px;
+    padding: 8px 10px;
+    gap: 10px;
+}
+
+.button-primary {
+    width: 150px;
+    height: 42px;
+    border-radius: 6px;
+    padding: 8px 20px;
+    gap: 6px;
+}
+
+.button-search {
+    width: 200px;
+    height: 40px;
+    border-radius: 8px;
+    padding: 10px;
+    gap: 10px;
+    margin-left: 548px
+}
+
+.rangepicker {
+    margin-right: 500px;
+
+}
