@@ -168,7 +168,7 @@ const Employee: React.FC = () => {
                             </Button>
                             <Route path="/payroll-management" component={Payroll} />
                         </Link>
-                        <Button type='link' className='button-link'>
+                        <Button type='link' className='button-link' style={{ backgroundColor: "#F1F3F5" }}>
                             <svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g filter="url(#filter0_d_4329_15160)">
                                     <rect x="9" y="3" width="36" height="36" rx="18" fill="#FBFDFF" shape-rendering="crispEdges" />
