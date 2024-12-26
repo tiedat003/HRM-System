@@ -9,5 +9,5 @@ export const ROUTES = {
   attendance: "/attendance-management",
   leave: "/leave-management",
   payroll: "/payroll-management",
-
+  employee: "/employee-management",
 };

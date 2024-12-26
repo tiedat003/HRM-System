@@ -4,11 +4,11 @@ import type { MenuProps, TableColumnsType, TableProps } from 'antd';
 import { Breadcrumb, Button, Col, DatePicker, Divider, Layout, Menu, Row, Select, Table, theme } from 'antd';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
-import "../../../css/attendance.css"
 import "../../../css/general.css"
 import { Link, Route } from 'react-router-dom';
 import Leave from './Leave';
 import Payroll from './Payroll';
+import Attendance from './Attendance';
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -45,7 +45,7 @@ const layoutStyle: React.CSSProperties = {
 type TablePagination<T extends object> = NonNullable<Exclude<TableProps<T>['pagination'], boolean>>;
 type TablePaginationPosition = NonNullable<TablePagination<any>['position']>[number];
 
-const Attendance: React.FC = () => {
+const Employee: React.FC = () => {
 
     const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
     const [bordered, setBordered] = useState(true);
@@ -72,31 +72,15 @@ const Attendance: React.FC = () => {
     }
 
     const columns: TableColumnsType<DataType> = [
-        { title: 'Date', dataIndex: 'name' },
+        { title: 'Gender', dataIndex: 'name' },
         { title: 'NIK', dataIndex: 'age' },
         { title: 'Name', dataIndex: 'address' },
-        { title: 'Department', dataIndex: 'address' },
-        {
-            title: 'ATTENDANCE', children: [
-                { title: 'Start', dataIndex: 'address' },
-                { title: 'Lunch', dataIndex: 'address' },
-                { title: 'End of Lunch', dataIndex: 'address' },
-                { title: 'End', dataIndex: 'address' }
-            ]
-        },
-        {
-            title: "OT", children: [
-                { title: 'OT Start', dataIndex: 'address' },
-                { title: 'OT End', dataIndex: 'address' },
-            ]
-        },
-        {
-            title: "CODE", children: [
-                { title: 'Attendance Code', dataIndex: 'address' },
-                { title: 'Attendance Value', dataIndex: 'address' },
-            ]
-        },
-        { title: 'Late', dataIndex: 'address' },
+        { title: 'Card Number', dataIndex: 'address' },
+        { title: 'Account Number', dataIndex: 'address' },
+        { title: "Family Card No." },
+        { title: "Marriage Status", dataIndex: 'address' },
+        { title: 'Mother Name', dataIndex: 'address' },
+        { title: 'Place and Date birth', dataIndex: 'address' },
     ];
 
     const dataSource = Array.from<DataType>({ length: 100 }).map<DataType>((_, i) => ({
@@ -140,33 +124,21 @@ const Attendance: React.FC = () => {
             <Layout>
                 <Sider width={250} style={siderStyle}>
                     <Menu>
-                        <Button type='link' className='button-link'>
-                            <svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <g filter="url(#filter0_d_4329_21440)">
-                                    <rect x="9" y="3" width="36" height="36" rx="18" fill="#FBFDFF" shape-rendering="crispEdges" />
-                                    <path d="M30.9582 13.967V12.667C30.9582 12.3253 30.6749 12.042 30.3332 12.042C29.9915 12.042 29.7082 12.3253 29.7082 12.667V13.917H24.2915V12.667C24.2915 12.3253 24.0082 12.042 23.6665 12.042C23.3249 12.042 23.0415 12.3253 23.0415 12.667V13.967C20.7915 14.1753 19.6999 15.517 19.5332 17.5087C19.5165 17.7503 19.7165 17.9503 19.9499 17.9503H34.0499C34.2915 17.9503 34.4915 17.742 34.4665 17.5087C34.2999 15.517 33.2082 14.1753 30.9582 13.967Z" fill="#40C4AA" />
-                                    <path opacity="0.4" d="M34.5 20.0331V21.4831C34.5 21.9914 34.05 22.3831 33.55 22.2997C33.3167 22.2664 33.075 22.2414 32.8333 22.2414C30.3083 22.2414 28.25 24.2997 28.25 26.8247C28.25 27.2081 28.4 27.7414 28.5583 28.2248C28.7417 28.7664 28.3417 29.3247 27.7667 29.3247H23.6667C20.75 29.3247 19.5 27.6581 19.5 25.1581V20.0247C19.5 19.5664 19.875 19.1914 20.3333 19.1914H33.6667C34.125 19.1997 34.5 19.5747 34.5 20.0331Z" fill="#40C4AA" />
-                                    <path d="M32.8333 23.5C30.9917 23.5 29.5 24.9917 29.5 26.8333C29.5 27.4583 29.675 28.05 29.9833 28.55C30.5583 29.5167 31.6167 30.1667 32.8333 30.1667C34.05 30.1667 35.1083 29.5167 35.6833 28.55C35.9917 28.05 36.1667 27.4583 36.1667 26.8333C36.1667 24.9917 34.675 23.5 32.8333 23.5ZM34.5583 26.475L32.7833 28.1167C32.6667 28.225 32.5083 28.2833 32.3583 28.2833C32.2 28.2833 32.0417 28.225 31.9167 28.1L31.0917 27.275C30.85 27.0333 30.85 26.6333 31.0917 26.3917C31.3333 26.15 31.7333 26.15 31.975 26.3917L32.375 26.7917L33.7083 25.5583C33.9583 25.325 34.3583 25.3417 34.5917 25.5917C34.825 25.8417 34.8083 26.2333 34.5583 26.475Z" fill="#40C4AA" />
-                                    <path d="M24.0833 23.5004C23.8667 23.5004 23.65 23.4087 23.4917 23.2587C23.3417 23.1004 23.25 22.8837 23.25 22.6671C23.25 22.4504 23.3417 22.2338 23.4917 22.0754C23.6833 21.8838 23.975 21.7921 24.25 21.8504C24.3 21.8587 24.35 21.8754 24.4 21.9004C24.45 21.9171 24.5 21.9421 24.55 21.9754C24.5917 22.0088 24.6333 22.0421 24.675 22.0754C24.825 22.2338 24.9167 22.4504 24.9167 22.6671C24.9167 22.8837 24.825 23.1004 24.675 23.2587C24.6333 23.2921 24.5917 23.3254 24.55 23.3587C24.5 23.3921 24.45 23.4171 24.4 23.4338C24.35 23.4588 24.3 23.4754 24.25 23.4838C24.1917 23.4921 24.1333 23.5004 24.0833 23.5004Z" fill="#40C4AA" />
-                                    <path d="M26.9998 23.5C26.7832 23.5 26.5665 23.4083 26.4082 23.2583C26.2582 23.1 26.1665 22.8833 26.1665 22.6667C26.1665 22.45 26.2582 22.2333 26.4082 22.075C26.7248 21.7667 27.2832 21.7667 27.5915 22.075C27.7415 22.2333 27.8332 22.45 27.8332 22.6667C27.8332 22.8833 27.7415 23.1 27.5915 23.2583C27.4332 23.4083 27.2165 23.5 26.9998 23.5Z" fill="#40C4AA" />
-                                    <path d="M24.0833 26.4167C23.8667 26.4167 23.65 26.325 23.4917 26.175C23.3417 26.0167 23.25 25.8001 23.25 25.5834C23.25 25.3667 23.3417 25.1501 23.4917 24.9917C23.575 24.9167 23.6583 24.8584 23.7667 24.8167C24.075 24.6834 24.4417 24.7584 24.675 24.9917C24.825 25.1501 24.9167 25.3667 24.9167 25.5834C24.9167 25.8001 24.825 26.0167 24.675 26.175C24.5167 26.325 24.3 26.4167 24.0833 26.4167Z" fill="#40C4AA" />
-                                </g>
-                                <defs>
-                                    <filter id="filter0_d_4329_21440" x="0" y="0" width="54" height="54" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                                        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
-                                        <feOffset dy="6" />
-                                        <feGaussianBlur stdDeviation="4.5" />
-                                        <feComposite in2="hardAlpha" operator="out" />
-                                        <feColorMatrix type="matrix" values="0 0 0 0 0.25098 0 0 0 0 0.768627 0 0 0 0 0.666667 0 0 0 0.15 0" />
-                                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_4329_21440" />
-                                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_4329_21440" result="shape" />
-                                    </filter>
-                                </defs>
-                            </svg>
-
-                            Attendance Management
-                        </Button>
+                        <Link to="/attendance-management">
+                            <Button type='link' className='button-link'>
+                                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="36" height="36" rx="18" fill="#F1F3F5" />
+                                    <path d="M21.9582 10.967V9.66699C21.9582 9.32533 21.6749 9.04199 21.3332 9.04199C20.9915 9.04199 20.7082 9.32533 20.7082 9.66699V10.917H15.2915V9.66699C15.2915 9.32533 15.0082 9.04199 14.6665 9.04199C14.3249 9.04199 14.0415 9.32533 14.0415 9.66699V10.967C11.7915 11.1753 10.6999 12.517 10.5332 14.5087C10.5165 14.7503 10.7165 14.9503 10.9499 14.9503H25.0499C25.2915 14.9503 25.4915 14.742 25.4665 14.5087C25.2999 12.517 24.2082 11.1753 21.9582 10.967Z" fill="#40C4AA" />
+                                    <path opacity="0.4" d="M25.5 17.0331V18.4831C25.5 18.9914 25.05 19.3831 24.55 19.2997C24.3167 19.2664 24.075 19.2414 23.8333 19.2414C21.3083 19.2414 19.25 21.2997 19.25 23.8247C19.25 24.2081 19.4 24.7414 19.5583 25.2248C19.7417 25.7664 19.3417 26.3247 18.7667 26.3247H14.6667C11.75 26.3247 10.5 24.6581 10.5 22.1581V17.0247C10.5 16.5664 10.875 16.1914 11.3333 16.1914H24.6667C25.125 16.1997 25.5 16.5747 25.5 17.0331Z" fill="#40C4AA" />
+                                    <path d="M23.8333 20.5C21.9917 20.5 20.5 21.9917 20.5 23.8333C20.5 24.4583 20.675 25.05 20.9833 25.55C21.5583 26.5167 22.6167 27.1667 23.8333 27.1667C25.05 27.1667 26.1083 26.5167 26.6833 25.55C26.9917 25.05 27.1667 24.4583 27.1667 23.8333C27.1667 21.9917 25.675 20.5 23.8333 20.5ZM25.5583 23.475L23.7833 25.1167C23.6667 25.225 23.5083 25.2833 23.3583 25.2833C23.2 25.2833 23.0417 25.225 22.9167 25.1L22.0917 24.275C21.85 24.0333 21.85 23.6333 22.0917 23.3917C22.3333 23.15 22.7333 23.15 22.975 23.3917L23.375 23.7917L24.7083 22.5583C24.9583 22.325 25.3583 22.3417 25.5917 22.5917C25.825 22.8417 25.8083 23.2333 25.5583 23.475Z" fill="#40C4AA" />
+                                    <path d="M15.0833 20.5004C14.8667 20.5004 14.65 20.4087 14.4917 20.2587C14.3417 20.1004 14.25 19.8837 14.25 19.6671C14.25 19.4504 14.3417 19.2338 14.4917 19.0754C14.6833 18.8838 14.975 18.7921 15.25 18.8504C15.3 18.8587 15.35 18.8754 15.4 18.9004C15.45 18.9171 15.5 18.9421 15.55 18.9754C15.5917 19.0088 15.6333 19.0421 15.675 19.0754C15.825 19.2338 15.9167 19.4504 15.9167 19.6671C15.9167 19.8837 15.825 20.1004 15.675 20.2587C15.6333 20.2921 15.5917 20.3254 15.55 20.3587C15.5 20.3921 15.45 20.4171 15.4 20.4338C15.35 20.4588 15.3 20.4754 15.25 20.4838C15.1917 20.4921 15.1333 20.5004 15.0833 20.5004Z" fill="#40C4AA" />
+                                    <path d="M17.9998 20.5C17.7832 20.5 17.5665 20.4083 17.4082 20.2583C17.2582 20.1 17.1665 19.8833 17.1665 19.6667C17.1665 19.45 17.2582 19.2333 17.4082 19.075C17.7248 18.7667 18.2832 18.7667 18.5915 19.075C18.7415 19.2333 18.8332 19.45 18.8332 19.6667C18.8332 19.8833 18.7415 20.1 18.5915 20.2583C18.4332 20.4083 18.2165 20.5 17.9998 20.5Z" fill="#40C4AA" />
+                                    <path d="M15.0833 23.4167C14.8667 23.4167 14.65 23.325 14.4917 23.175C14.3417 23.0167 14.25 22.8001 14.25 22.5834C14.25 22.3667 14.3417 22.1501 14.4917 21.9917C14.575 21.9167 14.6583 21.8584 14.7667 21.8167C15.075 21.6834 15.4417 21.7584 15.675 21.9917C15.825 22.1501 15.9167 22.3667 15.9167 22.5834C15.9167 22.8001 15.825 23.0167 15.675 23.175C15.5167 23.325 15.3 23.4167 15.0833 23.4167Z" fill="#40C4AA" />
+                                </svg>
+                                Attendance Management
+                            </Button>
+                            <Route path="/attendance-management" component={Attendance} />
+                        </Link>
                         <Link to="/leave-management">
                             <Button type='link' className='button-link'>
                                 <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -197,13 +169,27 @@ const Attendance: React.FC = () => {
                             <Route path="/payroll-management" component={Payroll} />
                         </Link>
                         <Button type='link' className='button-link'>
-                            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect width="36" height="36" rx="18" fill="#F1F3F5" />
-                                <path d="M13.8332 14.667H11.3332C10.4165 14.667 9.6665 13.917 9.6665 13.0003V11.3337C9.6665 10.417 10.4165 9.66699 11.3332 9.66699H13.8332C14.7498 9.66699 15.4998 10.417 15.4998 11.3337V13.0003C15.4998 13.917 14.7498 14.667 13.8332 14.667Z" fill="#94BA2C" />
-                                <path d="M25.3335 13.8333H22.3335C21.7835 13.8333 21.3335 13.3833 21.3335 12.8333V11.5C21.3335 10.95 21.7835 10.5 22.3335 10.5H25.3335C25.8835 10.5 26.3335 10.95 26.3335 11.5V12.8333C26.3335 13.3833 25.8835 13.8333 25.3335 13.8333Z" fill="#94BA2C" />
-                                <path d="M25.3335 20.0833H22.3335C21.7835 20.0833 21.3335 19.6333 21.3335 19.0833V17.75C21.3335 17.2 21.7835 16.75 22.3335 16.75H25.3335C25.8835 16.75 26.3335 17.2 26.3335 17.75V19.0833C26.3335 19.6333 25.8835 20.0833 25.3335 20.0833Z" fill="#94BA2C" />
-                                <path opacity="0.37" d="M21.3333 19.042C21.675 19.042 21.9583 18.7587 21.9583 18.417C21.9583 18.0753 21.675 17.792 21.3333 17.792H19.0417V12.792H21.3333C21.675 12.792 21.9583 12.5087 21.9583 12.167C21.9583 11.8253 21.675 11.542 21.3333 11.542H15.5C15.1583 11.542 14.875 11.8253 14.875 12.167C14.875 12.5087 15.1583 12.792 15.5 12.792H17.7917V23.0003C17.7917 24.267 18.8167 25.292 20.0833 25.292H21.3333C21.675 25.292 21.9583 25.0087 21.9583 24.667C21.9583 24.3253 21.675 24.042 21.3333 24.042H20.0833C19.5083 24.042 19.0417 23.5753 19.0417 23.0003V19.042H21.3333Z" fill="#94BA2C" />
-                                <path d="M25.3335 26.3333H22.3335C21.7835 26.3333 21.3335 25.8833 21.3335 25.3333V24C21.3335 23.45 21.7835 23 22.3335 23H25.3335C25.8835 23 26.3335 23.45 26.3335 24V25.3333C26.3335 25.8833 25.8835 26.3333 25.3335 26.3333Z" fill="#94BA2C" />
+                            <svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g filter="url(#filter0_d_4329_15160)">
+                                    <rect x="9" y="3" width="36" height="36" rx="18" fill="#FBFDFF" shape-rendering="crispEdges" />
+                                    <path d="M22.8337 17.667H20.3337C19.417 17.667 18.667 16.917 18.667 16.0003V14.3337C18.667 13.417 19.417 12.667 20.3337 12.667H22.8337C23.7503 12.667 24.5003 13.417 24.5003 14.3337V16.0003C24.5003 16.917 23.7503 17.667 22.8337 17.667Z" fill="#94BA2C" />
+                                    <path d="M34.333 16.8333H31.333C30.783 16.8333 30.333 16.3833 30.333 15.8333V14.5C30.333 13.95 30.783 13.5 31.333 13.5H34.333C34.883 13.5 35.333 13.95 35.333 14.5V15.8333C35.333 16.3833 34.883 16.8333 34.333 16.8333Z" fill="#94BA2C" />
+                                    <path d="M34.333 23.0833H31.333C30.783 23.0833 30.333 22.6333 30.333 22.0833V20.75C30.333 20.2 30.783 19.75 31.333 19.75H34.333C34.883 19.75 35.333 20.2 35.333 20.75V22.0833C35.333 22.6333 34.883 23.0833 34.333 23.0833Z" fill="#94BA2C" />
+                                    <path opacity="0.37" d="M30.3333 22.042C30.675 22.042 30.9583 21.7587 30.9583 21.417C30.9583 21.0753 30.675 20.792 30.3333 20.792H28.0417V15.792H30.3333C30.675 15.792 30.9583 15.5087 30.9583 15.167C30.9583 14.8253 30.675 14.542 30.3333 14.542H24.5C24.1583 14.542 23.875 14.8253 23.875 15.167C23.875 15.5087 24.1583 15.792 24.5 15.792H26.7917V26.0003C26.7917 27.267 27.8167 28.292 29.0833 28.292H30.3333C30.675 28.292 30.9583 28.0087 30.9583 27.667C30.9583 27.3253 30.675 27.042 30.3333 27.042H29.0833C28.5083 27.042 28.0417 26.5753 28.0417 26.0003V22.042H30.3333Z" fill="#94BA2C" />
+                                    <path d="M34.333 29.3333H31.333C30.783 29.3333 30.333 28.8833 30.333 28.3333V27C30.333 26.45 30.783 26 31.333 26H34.333C34.883 26 35.333 26.45 35.333 27V28.3333C35.333 28.8833 34.883 29.3333 34.333 29.3333Z" fill="#94BA2C" />
+                                </g>
+                                <defs>
+                                    <filter id="filter0_d_4329_15160" x="0" y="0" width="54" height="54" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                                        <feOffset dy="6" />
+                                        <feGaussianBlur stdDeviation="4.5" />
+                                        <feComposite in2="hardAlpha" operator="out" />
+                                        <feColorMatrix type="matrix" values="0 0 0 0 0.580392 0 0 0 0 0.729412 0 0 0 0 0.172549 0 0 0 0.15 0" />
+                                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_4329_15160" />
+                                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_4329_15160" result="shape" />
+                                    </filter>
+                                </defs>
                             </svg>
                             Employee Management
                         </Button>
@@ -237,15 +223,14 @@ const Attendance: React.FC = () => {
                                 href: '',
                             },
                             {
-                                title: 'Attendance Management',
-                                href: '',
-                            },
-                            {
-                                title: 'Attendance Record',
+                                title: 'Employee Management',
                             },
                         ]}
                     />
-                    <h2>Attendance Management</h2>
+                    <div style={{ display: "flex" }}>
+                        <h2>Employee Management</h2>
+                        <Button icon={<SearchOutlined />} className='button-search' >Search</Button>
+                    </div>
                     <Content
                         style={{
                             padding: 24,
@@ -255,16 +240,7 @@ const Attendance: React.FC = () => {
                             borderRadius: borderRadiusLG,
                         }}
                     >
-                        <div style={{ display: "flex", justifyContent: "space-between", paddingBottom: "10px", gap: "10px" }}>
-                            <Button type="primary" className='button-primary' style={{ width: "178px" }}>Attendance Record</Button>
-                            <Button color="primary" className='button-primary' variant="filled" style={{ width: "169px" }}>Overtime Request</Button>
-                            <Button icon={<SearchOutlined />} className='button-search'>Search</Button>
-                        </div>
-                        <div style={{ display: "flex", justifyContent: "space-between" }}>
-                            <RangePicker className='rangepicker'
-                                defaultValue={[dayjs('01/01/2024', dateFormat), dayjs('01/01/2024', dateFormat)]}
-                                format={dateFormat}
-                            />
+                        <div style={{ display: "flex", justifyContent: "right", gap: "10px" }}>
                             <Button color="primary" variant="filled">
                                 <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M13.3333 6.5H7.33333C6.59695 6.5 6 7.09695 6 7.83333V13.8333C6 14.5697 6.59695 15.1667 7.33333 15.1667H13.3333C14.0697 15.1667 14.6667 14.5697 14.6667 13.8333V7.83333C14.6667 7.09695 14.0697 6.5 13.3333 6.5Z" stroke="#0091FF" stroke-linecap="round" stroke-linejoin="round" />
@@ -290,9 +266,6 @@ const Attendance: React.FC = () => {
                             scroll={{ x: 'max-content' }}
                             pagination={{ position: [bottom] }}
                         />
-                        <Button variant="filled" style={{ backgroundColor: "#E5484D", color: "#FBFDFF" }}>
-                            Unlock Record
-                        </Button>
                         <Divider />
                     </Content>
                     <Footer style={footerStyle}>
@@ -304,4 +277,4 @@ const Attendance: React.FC = () => {
     );
 };
 
-export default Attendance;
+export default Employee;
