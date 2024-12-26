@@ -56,7 +56,6 @@ const Payroll: React.FC = () => {
 
     const [bottom, setBottom] = useState<TablePaginationPosition>('bottomLeft');
 
-    type TableRowSelection<T extends object = object> = TableProps<T>['rowSelection'];
     interface DataType {
         key: React.Key;
         name: string;
