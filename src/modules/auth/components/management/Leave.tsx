@@ -4,12 +4,8 @@ import type { TableColumnsType, TableProps } from 'antd';
 import { Breadcrumb, Button, DatePicker, Divider, Layout, Menu, Modal, Select, Table, theme } from 'antd';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
-import "../../../css/leave.css"
 import "../../../css/general.css"
-import { Link, Route } from 'react-router-dom';
-import Attendance from './Attendance';
-import Payroll from './Payroll';
-import Employee from './Employee';
+import "../../../css/leave.css"
 import { ROUTES } from '../../../../configs/routes';
 
 
@@ -45,6 +41,8 @@ const layoutStyle = {
     padding: '0 24px 24px'
 };
 
+type TablePagination<T extends object> = NonNullable<Exclude<TableProps<T>['pagination'], boolean>>;
+type TablePaginationPosition = NonNullable<TablePagination<any>['position']>[number];
 
 const Leave: React.FC = () => {
 
@@ -61,6 +59,8 @@ const Leave: React.FC = () => {
         selectedRowKeys,
         onChange: onSelectChange,
     };
+
+    const [bottom, setBottom] = useState<TablePaginationPosition>('bottomLeft');
 
     type TableRowSelection<T extends object = object> = TableProps<T>['rowSelection'];
     interface DataType {
@@ -275,7 +275,8 @@ const Leave: React.FC = () => {
                             rowSelection={rowSelection}
                             columns={columns}
                             dataSource={dataSource}
-                            scroll={{ x: 'max-content' }} />
+                            scroll={{ x: 'max-content' }}
+                            pagination={{ position: [bottom] }} />
                         <Divider />
                     </Content>
                     <Footer style={footerStyle}>

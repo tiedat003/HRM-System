@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
 import { SearchOutlined } from '@ant-design/icons';
-import type { MenuProps, TableColumnsType, TableProps } from 'antd';
-import { Breadcrumb, Button, Col, DatePicker, Divider, Layout, Menu, Row, Select, Table, theme } from 'antd';
+import type { TableColumnsType, TableProps } from 'antd';
+import { Breadcrumb, Button, DatePicker, Divider, Layout, Menu, Select, Table, theme } from 'antd';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
-import "../../../css/attendance.css"
 import "../../../css/general.css"
-import { Link, Route } from 'react-router-dom';
-import Leave from './Leave';
-import Payroll from './Payroll';
-import Employee from './Employee';
+import "../../../css/attendance.css"
 import { ROUTES } from '../../../../configs/routes';
 
 const { Header, Footer, Sider, Content } = Layout;
